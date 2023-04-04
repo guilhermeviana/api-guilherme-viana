@@ -3,9 +3,8 @@ Clone os Arquivos do Laravel
 git clone https://github.com/guilhermeviana/api-guilherme-viana.git
 ```
 
-```
 ```sh
-cd app-laravel/
+cd api-guilherme-viana
 ```
 
 Crie o Arquivo .env
