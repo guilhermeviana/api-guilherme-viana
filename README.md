@@ -2,7 +2,7 @@ Clone os Arquivos do Laravel
 ```sh
 git clone https://github.com/guilhermeviana/api-guilherme-viana.git
 ```
-
+Acesse o projeto
 ```sh
 cd api-guilherme-viana
 ```
