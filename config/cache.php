@@ -77,6 +77,8 @@ return [
             'driver' => 'redis',
             'connection' => 'cache',
             'lock_connection' => 'default',
+            'prefix' => env('REDIS_PREFIX', 'laravel_cache'),
+            'expire' => env('REDIS_EXPIRE', 60),
         ],
 
         'dynamodb' => [

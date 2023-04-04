@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - laravel
+
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8989:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks:
+            - laravel
+
+    db:
+        image: postgres:12
+        restart: unless-stopped
+        environment:
+            PGPASSWORD: 'password'
+            POSTGRES_DB: 'om_challenge'
+            POSTGRES_USER: 'root'
+            POSTGRES_PASSWORD: 'password'
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+        ports:
+            - '5432:5432'
+        networks:
+            - laravel
+
+    redis:
+        image: redis:latest
+        networks:
+        - laravel
+
+networks:
+    laravel:
+        driver: bridge
